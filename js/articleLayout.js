@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', ()=> {
-    fetch('http://localhost:3000/articles/2')
+    const id = window.location.search.substring(1).split('=')[1];
+    fetch(`http://localhost:3000/articles/${id}`)
     .then(rawData => rawData.json())
     .then(information => {
         document.getElementById('title').innerText = information.title;
