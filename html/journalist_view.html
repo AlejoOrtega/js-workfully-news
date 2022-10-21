@@ -8,19 +8,41 @@
     <link rel="stylesheet" href="../css/journalist_view.css">
 </head>
 <body>
-    <header>NAV BAR</header>
+    <!-- HEADER -->
+    <header>
+        <div class="workfully-logo">
+            <a href="#">
+                <img class="w-logo" src="../assets/img/workfully_black_465x.avif" alt="Workfully" />
+            </a>
+        </div>
+        <div class="user-roles">
+            <a href="#">Reader</a>
+            <a href="#">Journalist</a>
+        </div>
+    </header>
     <main>
+        <!-- SIDE COLUMN (CARDS)-->
         <div class="side-column">
             <div class="side-column__cards">
-                <div class="card-news">CARD 1</div>
-                <div class="card-news">CARD 2</div>
-                <div class="card-news">CARD 3</div>
+                <div class="card-news" onclick="openArticle()">
+                    <p class="card-title">Title</p>
+                    <p class="card-author">Author</p>
+                </div>
+                <div class="card-news" onclick="openArticle()">
+                    <p class="card-title">Title</p>
+                    <p class="card-author">Author</p>
+                </div>
+                <div class="card-news" onclick="openArticle()">
+                    <p class="card-title">Title</p>
+                    <p class="card-author">Author</p>
+                </div>
             </div>
             <div class="side-column__buttons">
                 <button class="btn-edit">Edit content</button>
                 <button class="btn-delete">Delete delete</button>
             </div>
         </div>
+        <!-- MAIN COLUMN (ARTICLE) -->
         <div class="main-column">
             <article>
                 <h1>Webb Telescope Captures New View of ‘Pillars of Creation’</h1>
@@ -49,6 +71,7 @@
             </article>
         </div>
     </main>
-    <footer>FOOTER</footer>
+    <footer>© Copyright 2022. Workfully News - All rights reserved.</footer>
+    <script src="../js/journalist_view.js"></script>
 </body>
 </html>

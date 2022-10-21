@@ -5,8 +5,45 @@
     font-family: sans-serif;
 }
 
-body {
-    background-color: lightpink;
+header {
+    /* position: fixed; */
+    top: 0;
+    width: 100%;
+    background-color: white;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    border-bottom: 1px solid lightgray;
+}
+
+.workfully-logo {
+    margin-left: 24px;
+}
+
+.w-logo {
+    width: 170px;
+}
+
+.user-roles {
+    margin-right: 24px;
+}
+
+.user-roles>a {
+    text-decoration: none;
+    padding: 8px;
+    color: #3c4858;
+    font-size: large;
+    font-weight: 600;
+    display: inline-block;
+    width: 110px;
+    text-align: center;
+    list-style: none;
+    background-color: lightgrey;
+    border-radius: 4px;
+    border: 1px solid white;
+    line-height: 36px;
+    margin-left: 10px;
 }
 
 main {
@@ -33,11 +70,16 @@ main {
 
 .card-news {
     background-color: lightgrey;
-    width: 100px;
-    padding: 5px;
+    width: auto;
+    padding: 15px;
     border-radius: 5px;
-    gap: 5px;
-    margin-top: 5px
+    gap: 10px;
+    margin-top: 5px;
+    border: 2px solid lightgrey;
+}
+
+.selected {
+    border: 2px solid red;
 }
 
 .card-news:hover {
@@ -57,5 +99,12 @@ main {
 .main-column {
     width: 80%;
     text-align: center;
+    padding: 25px;
+}
+
+footer {
+    text-align: center;
+    padding: 8px;
+    margin-top: auto;
 }
 
