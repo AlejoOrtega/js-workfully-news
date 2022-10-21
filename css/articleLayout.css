@@ -4,6 +4,47 @@ body{
     align-items: center;
 }
 
+header {
+    /* position: fixed; */
+    top: 0;
+    width: 100%;
+    background-color: white;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    border-bottom: 1px solid lightgray;
+}
+
+.workfully-logo {
+    margin-left: 24px;
+}
+
+.w-logo {
+    width: 170px;
+}
+
+.user-roles {
+    margin-right: 24px;
+}
+
+.user-roles > a {
+    text-decoration: none;
+    padding: 8px;
+    color: #3c4858;
+    font-size: large;
+    font-weight: 600;
+    display: inline-block;
+    width: 110px;
+    text-align: center;
+    list-style: none;
+    background-color: lightgrey;
+    border-radius: 4px;
+    border: 1px solid white;
+    line-height: 36px;
+    margin-left: 10px;
+}
+
 main{
     display: flex;
     flex-direction: column;
