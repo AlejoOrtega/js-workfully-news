@@ -53,6 +53,11 @@ header {
   margin-left: 10px;
 }
 
+.user-roles > a:hover {
+  background-color: grey;
+  color: white;
+}
+
 footer {
   text-align: center;
   padding: 8px;
