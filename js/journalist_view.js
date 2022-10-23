@@ -1,6 +1,6 @@
 const url = "http://localhost:3000/articles";
-const cardNews = document.querySelectorAll(".card-news");
 const sideColumn = document.querySelector(".side-column__cards");
+const mainColumn = document.querySelector(".main-column");
 
 const getData = async (url) => {
   const res = await fetch(url);
@@ -8,10 +8,13 @@ const getData = async (url) => {
   return data;
 };
 
-//This function will map the array and create a card to each element
+/**
+ * Function map the array and create a card for each item (article)
+ * @param {*} arr
+ */
 async function createCard(arr) {
   const localArray = await arr;
-  localArray.map((item, index) => {
+  localArray.map((item) => {
     const cardItem = document.createElement("div");
     cardItem.classList.add("card-news");
 
@@ -32,12 +35,29 @@ async function createCard(arr) {
   });
 }
 
-//This function will need to get the id from the article and show on the main column
+/**
+ * Function gets the item that was clicked (card) and present on the big screen
+ * @param {*} item
+ */
 const openArticle = (item) => {
   const mainColumn = document.querySelector(".main-column");
   mainColumn.innerHTML = "";
 
   const article = document.createElement("article");
+
+  const btnDelete = document.createElement("button");
+  btnDelete.classList.add("btn-delete");
+  btnDelete.textContent = "Delete article";
+  btnDelete.onclick = function () {
+    deleteArticle(item);
+  };
+
+  const btnEdit = document.createElement("button");
+  btnEdit.classList.add("btn-edit");
+  btnEdit.textContent = "Edit content";
+  btnEdit.onclick = function () {
+    editArticle(item);
+  };
 
   const title = document.createElement("h1");
   title.textContent = item.title;
@@ -58,6 +78,8 @@ const openArticle = (item) => {
   content.textContent = item.content;
   content.classList.add("content");
 
+  mainColumn.appendChild(btnDelete);
+  mainColumn.appendChild(btnEdit);
   mainColumn.appendChild(article);
   article.appendChild(title);
   article.appendChild(description);
@@ -67,10 +89,25 @@ const openArticle = (item) => {
 };
 
 //This function will need to get the id from the article and change the main column into an editable input
-function editArticle() {}
+function editArticle(item) {
+  const id = item.id;
+  console.log(id);
+}
 
 //This function will need to receive the id from the article and delete the whole object from the db
-function deleteArticle() {}
+function deleteArticle(item) {
+  const id = item.id;
+  console.log(id);
+  /*  const deleteUrl = `url/${id}`;
+  fetch(deleteUrl, {
+    method: "DELETE",
+  }).then((res) => {
+    if (!res.ok) {
+      console.log("Failed to delete");
+    }
+    mainColumn.textContent = "Article was deleted";
+  }); */
+}
 
 createCard(getData(url));
 window.onload = getData(url);
