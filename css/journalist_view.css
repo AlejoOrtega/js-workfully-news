@@ -84,6 +84,7 @@ main {
 
 .card-news:hover {
     border: 2px solid black;
+    cursor: pointer;
 }
 
 .side-column__buttons {
