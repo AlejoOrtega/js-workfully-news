@@ -3,6 +3,8 @@ const { create } = require("json-server");
 const url = "http://localhost:3000/articles";
 const sideColumn = document.querySelector(".side-column__cards");
 const mainColumn = document.querySelector(".main-column");
+let edit = false;
+let currentArticle = {};
 
 const getData = async (url) => {
   const res = await fetch(url);
@@ -22,6 +24,8 @@ async function createCard(arr) {
 
     cardItem.onclick = function () {
       openArticle(item);
+      edit = true;
+      currentArticle = item;
     };
 
     const cardTitle = document.createElement("p");
@@ -100,22 +104,34 @@ const openArticle = (item) => {
 
   const btnEdit = document.createElement("button");
   btnEdit.classList.add("btn-edit");
-  btnEdit.textContent = "Edit content";
+  btnEdit.textContent = "Save";
   btnEdit.onclick = function () {
-    editArticle(item);
+    saveBtn();
+  };
+
+  const makeEditable = (tag, key) => {
+    tag.setAttribute("contenteditable", "true");
+    tag.addEventListener("input", (e) => {
+      console.log("Content edited: ", e.currentTarget.textContent);
+      currentArticle[key] = e.currentTarget.textContent;
+      console.log(currentArticle);
+    });
   };
 
   const title = document.createElement("h1");
   title.textContent = item.title;
   title.classList.add("title");
+  makeEditable(title, "title");
 
   const description = document.createElement("h2");
   description.textContent = item.description;
   description.classList.add("description");
+  makeEditable(description, "description");
 
   const author = document.createElement("h3");
   author.textContent = item.author;
   author.classList.add("author");
+  makeEditable(author, "author");
 
   const thumbnail = document.createElement("img");
   thumbnail.src = item.thumbnail;
@@ -123,6 +139,7 @@ const openArticle = (item) => {
   const content = document.createElement("p");
   content.textContent = item.content;
   content.classList.add("content");
+  makeEditable(content, "content");
 
   mainColumn.appendChild(btnDelete);
   mainColumn.appendChild(btnEdit);
@@ -139,16 +156,29 @@ function createArticle(newArticleData){
 }
 
 //This function will need to get the id from the article and change the main column into an editable input
-function editArticle(item) {
-  const id = item.id;
-  console.log(id);
+async function saveBtn() {
+  const editUrl = `${url}/${currentArticle.id}`;
+  console.log(currentArticle);
+  console.log(editUrl);
+  await fetch(editUrl, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(currentArticle),
+  }).then((res) => {
+    if (!res.ok) {
+      console.log("Failed to update");
+    }
+    mainColumn.textContent = "Article was update";
+  });
 }
 
 //This function will need to receive the id from the article and delete the whole object from the db
 function deleteArticle(item) {
   const id = item.id;
   console.log(id);
-  /*  const deleteUrl = `url/${id}`;
+  /*  const deleteUrl = `${url}/${id}`;
   fetch(deleteUrl, {
     method: "DELETE",
   }).then((res) => {
