@@ -1,4 +1,3 @@
-
 {
   "articles": [
     {
@@ -24,7 +23,13 @@
       "thumbnail": "../assets/img/nebula.jpg",
       "content": "“It takes energy to heat your house,” Andrew Dessler, a professor of atmospheric sciences at Texas A&M University who was not affiliated with NOAA’s outlook, told CNN. “So, the colder it is, the more energy we need for heating. And that’s bad news in a world where energy is constrained by things like the war in Ukraine.” People from Oregon to Michigan may be feeling the pinch when they get their energy bills as temperatures are expected to be below normal during what is already the coldest part of the year.",
       "author": "CNN"
+    },
+    {
+      "title": "The new article",
+      "description": "This is some description",
+      "thumbnail": "https://i.natgeofe.com/k/327b01e8-be2e-4694-9ae9-ae7837bd8aea/mallard-male-swimming_2x1.jpg",
+      "content": "This is the content",
+      "id": "Sjduvsd"
     }
   ]
 }
-

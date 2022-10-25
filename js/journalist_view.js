@@ -1,5 +1,3 @@
-const { create } = require("json-server");
-
 const url = "http://localhost:3000/articles";
 const sideColumn = document.querySelector(".side-column__cards");
 const mainColumn = document.querySelector(".main-column");
@@ -60,20 +58,22 @@ function newArticleButton() {
     saveButton.addEventListener('click', createArticle);
 
     const inputTitle = document.createElement('input');
-    inputTitle.classList.add('article__new-inputs');
-    inputTitle.placeholder = 'Title...'
+    inputTitle.classList.add('article__new-inputs', 'title');
+    inputTitle.placeholder = 'Title...';
 
-    const inputDescription = document.createElement('input');
-    inputDescription.classList.add('article__new-inputs');
-    inputDescription.placeholder = 'Description...'
+    const inputDescription = document.createElement('textarea');
+    inputDescription.classList.add('article__new-inputs', 'description');
+    inputDescription.placeholder = 'Description...';
+    inputDescription.rows = 2;
 
     const inputThumbnail = document.createElement('input');
-    inputThumbnail.classList.add('article__new-inputs');
-    inputThumbnail.placeholder = 'Thumbnail...'
+    inputThumbnail.classList.add('article__new-inputs', 'thumbnail');
+    inputThumbnail.placeholder = 'Thumbnail...';
 
-    const inputContent = document.createElement('input');
-    inputContent.classList.add('article__new-inputs');
-    inputContent.placeholder = 'Content...'
+    const inputContent = document.createElement('textarea');
+    inputContent.classList.add('article__new-inputs', 'content');
+    inputContent.placeholder = 'Content...';
+    inputContent.rows = 30;
 
     article.appendChild(saveButton);
     article.appendChild(inputTitle);
@@ -151,8 +151,28 @@ const openArticle = (item) => {
   article.appendChild(content);
 };
 
-function createArticle(newArticleData){
+function createArticle(){
+  console.log(document.getElementsByClassName('article__new-inputs'));
+  const newArticle = {
+    title: document.getElementsByClassName('article__new-inputs')[0].value,
+    description: document.getElementsByClassName('article__new-inputs')[1].value,
+    thumbnail: document.getElementsByClassName('article__new-inputs')[2].value,
+    content: document.getElementsByClassName('article__new-inputs')[3].value,
+  }
+  fetch(url,{
+    method:"POST",
+    headers:{
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(newArticle)
+  }).then(res => {
+    if (!res.ok) {
+      console.log("Failed to update");
+    }
+    mainColumn.textContent = "Article was created";
+  }
 
+  )
 }
 
 //This function will need to get the id from the article and change the main column into an editable input
