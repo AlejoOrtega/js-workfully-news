@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/clobochar/js-workfully-news#readme",
   "dependencies": {
-    "json-server": "^0.17.0"
+    "json-server": "^0.17.0",
+    "mysql": "^2.18.1"
   }
 }
