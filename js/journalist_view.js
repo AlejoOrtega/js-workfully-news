@@ -27,10 +27,10 @@ async function createCard(arr) {
     };
 
     const cardTitle = document.createElement("p");
-    cardTitle.textContent = item.title;
+    cardTitle.textContent = `TITLE: ${item.title}`;
 
     const cardAuthor = document.createElement("p");
-    cardAuthor.textContent = item.author;
+    cardAuthor.textContent = `AUTHOR: ${item.author}`;
 
     cardItem.appendChild(cardTitle);
     cardItem.appendChild(cardAuthor);
@@ -40,7 +40,7 @@ async function createCard(arr) {
 }
 
 /**
- * Function gets the item that was clicked (card) and present on the big screen
+ * Function gets the item that was clicked (card) and present on the main column
  * @param {*} item
  */
 const openArticle = (item) => {
@@ -105,7 +105,9 @@ const openArticle = (item) => {
   article.appendChild(content);
 };
 
-//This function will need to get the id from the article and change the main column into an editable input
+/**
+ * Function that is attached with the save button and when clicked, it will save the modified article into the db.
+ */
 async function saveBtn() {
   const editUrl = `${url}/${currentArticle.id}`;
   console.log(currentArticle);
@@ -124,11 +126,13 @@ async function saveBtn() {
   });
 }
 
-//This function will need to receive the id from the article and delete the whole object from the db
+/**
+ * Function delete the article that is on the main column.
+ * @param {*} item
+ */
 function deleteArticle(item) {
   const id = item.id;
-  console.log(id);
-  /*  const deleteUrl = `${url}/${id}`;
+  const deleteUrl = `${url}/${id}`;
   fetch(deleteUrl, {
     method: "DELETE",
   }).then((res) => {
@@ -136,7 +140,7 @@ function deleteArticle(item) {
       console.log("Failed to delete");
     }
     mainColumn.textContent = "Article was deleted";
-  }); */
+  });
 }
 
 createCard(getData(url));
