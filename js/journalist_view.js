@@ -27,35 +27,36 @@ async function createCard(arr) {
     };
 
     const cardTitle = document.createElement("p");
-    cardTitle.textContent = item.title;
+    cardTitle.textContent = `TITLE: ${item.title}`;
 
     const cardAuthor = document.createElement("p");
-    cardAuthor.textContent = item.author;
+    cardAuthor.textContent = `AUTHOR: ${item.author}`;
 
     cardItem.appendChild(cardTitle);
     cardItem.appendChild(cardAuthor);
 
     sideColumn.appendChild(cardItem);
   });
-  
+
   newArticleButton();
 }
 
 function newArticleButton() {
   const cardItem = document.createElement("div");
   cardItem.classList.add("card-news");
-  cardItem.innerText = 'New Article';
-  cardItem.addEventListener('click',()=>{
+  cardItem.innerText = "New Article";
+  cardItem.addEventListener("click", () => {
     const mainColumn = document.querySelector(".main-column");
     mainColumn.innerHTML = "";
 
     const article = document.createElement("article");
-    article.classList.add('article__new-article');
+    article.classList.add("article__new-article");
 
-    const saveButton = document.createElement('button');
-    saveButton.innerText = 'Save Article'
+    const saveButton = document.createElement("button");
+    saveButton.innerText = "Save Article";
 
-    saveButton.addEventListener('click', createArticle);
+    saveButton.addEventListener("click", createArticle);
+
 
     const inputTitle = document.createElement('input');
     inputTitle.classList.add('article__new-inputs', 'title');
@@ -75,18 +76,20 @@ function newArticleButton() {
     inputContent.placeholder = 'Content...';
     inputContent.rows = 30;
 
+
+
     article.appendChild(saveButton);
     article.appendChild(inputTitle);
     article.appendChild(inputDescription);
     article.appendChild(inputThumbnail);
     article.appendChild(inputContent);
     mainColumn.appendChild(article);
-  })
-  sideColumn.appendChild(cardItem)
+  });
+  sideColumn.appendChild(cardItem);
 }
 
 /**
- * Function gets the item that was clicked (card) and present on the big screen
+ * Function gets the item that was clicked (card) and present on the main column
  * @param {*} item
  */
 const openArticle = (item) => {
@@ -151,6 +154,7 @@ const openArticle = (item) => {
   article.appendChild(content);
 };
 
+
 function createArticle(){
   console.log(document.getElementsByClassName('article__new-inputs'));
   const newArticle = {
@@ -175,7 +179,7 @@ function createArticle(){
   )
 }
 
-//This function will need to get the id from the article and change the main column into an editable input
+
 async function saveBtn() {
   const editUrl = `${url}/${currentArticle.id}`;
   console.log(currentArticle);
@@ -194,11 +198,13 @@ async function saveBtn() {
   });
 }
 
-//This function will need to receive the id from the article and delete the whole object from the db
+/**
+ * Function delete the article that is on the main column.
+ * @param {*} item
+ */
 function deleteArticle(item) {
   const id = item.id;
-  console.log(id);
-  /*  const deleteUrl = `${url}/${id}`;
+  const deleteUrl = `${url}/${id}`;
   fetch(deleteUrl, {
     method: "DELETE",
   }).then((res) => {
@@ -206,7 +212,7 @@ function deleteArticle(item) {
       console.log("Failed to delete");
     }
     mainColumn.textContent = "Article was deleted";
-  }); */
+  });
 }
 
 createCard(getData(url));

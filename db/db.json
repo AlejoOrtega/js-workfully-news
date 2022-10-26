@@ -2,11 +2,11 @@
   "articles": [
     {
       "id": "0",
-      "title": "TEST TITLE",
-      "description": "LOREM IPSUM BLABLA",
+      "title": "First Minister Nicola Sturgeon speaks to new PM Rishi Sunak",
+      "description": "First Minister Nicola Sturgeon has spoken to new Prime Minister Rishi Sunak on his first day in office.",
       "thumbnail": "../assets/img/nebula.jpg",
-      "content": "TEST TEST",
-      "author": "Laura Pereira"
+      "content": "Afterwards Ms Sturgeon said that the call with Mr Sunak had been constructive.And the prime minister confirmed he emphasised their duty to work closely together. It came just hours after the former chancellor succeeded Liz Truss and became the UK's third prime minister since September. Ms Sturgeon tweeted: I expressed hope that we will build a UK/Scot gov relationship based on mutual respect - inc for mandates - and my fear that further austerity will do real damage to people & public services. I look forward to further engagement soon.",
+      "author": "BBC News"
     },
     {
       "id": "1",
