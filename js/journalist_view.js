@@ -1,3 +1,5 @@
+const { create } = require("json-server");
+
 const url = "http://localhost:3000/articles";
 const sideColumn = document.querySelector(".side-column__cards");
 const mainColumn = document.querySelector(".main-column");
@@ -37,6 +39,50 @@ async function createCard(arr) {
 
     sideColumn.appendChild(cardItem);
   });
+
+  newArticleButton();
+}
+
+function newArticleButton() {
+  const cardItem = document.createElement("div");
+  cardItem.classList.add("card-news");
+  cardItem.innerText = "New Article";
+  cardItem.addEventListener("click", () => {
+    const mainColumn = document.querySelector(".main-column");
+    mainColumn.innerHTML = "";
+
+    const article = document.createElement("article");
+    article.classList.add("article__new-article");
+
+    const saveButton = document.createElement("button");
+    saveButton.innerText = "Save Article";
+
+    saveButton.addEventListener("click", createArticle);
+
+    const inputTitle = document.createElement("input");
+    inputTitle.classList.add("article__new-inputs");
+    inputTitle.placeholder = "Title...";
+
+    const inputDescription = document.createElement("input");
+    inputDescription.classList.add("article__new-inputs");
+    inputDescription.placeholder = "Description...";
+
+    const inputThumbnail = document.createElement("input");
+    inputThumbnail.classList.add("article__new-inputs");
+    inputThumbnail.placeholder = "Thumbnail...";
+
+    const inputContent = document.createElement("input");
+    inputContent.classList.add("article__new-inputs");
+    inputContent.placeholder = "Content...";
+
+    article.appendChild(saveButton);
+    article.appendChild(inputTitle);
+    article.appendChild(inputDescription);
+    article.appendChild(inputThumbnail);
+    article.appendChild(inputContent);
+    mainColumn.appendChild(article);
+  });
+  sideColumn.appendChild(cardItem);
 }
 
 /**
@@ -104,6 +150,8 @@ const openArticle = (item) => {
   article.appendChild(thumbnail);
   article.appendChild(content);
 };
+
+function createArticle(newArticleData) {}
 
 /**
  * Function that is attached with the save button and when clicked, it will save the modified article into the db.
